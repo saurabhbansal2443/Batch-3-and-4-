@@ -7,7 +7,7 @@ addbtn.addEventListener("click", function () {
     let taskInput = input.value;
     input.value = "";
     // console.log(taskInput)
-
+    if(taskInput!=""){
     let myEle = document.createElement("div");
     myEle.classList.add("taskoutput");
     myEle.innerHTML = `  <span class="tasktext"> ${taskInput} </span>
@@ -34,5 +34,8 @@ addbtn.addEventListener("click", function () {
        mainCont.removeChild(myEle); 
      })
     mainCont.appendChild(myEle);
+    }else{
+        alert("fill the input field");
+    }
 
 })

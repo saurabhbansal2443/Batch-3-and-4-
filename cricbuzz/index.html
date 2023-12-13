@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .square{
+            height: 100px;
+            width: 100px;
+            
+        }
+        .circle{
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="options">
+        <input type="number" class="inputNumber">
+        <select class="shape">
+            <option> circle </option>
+            <option> square </option>
+        </select>
+        <input type="color" class="colorSelect">
+        <button class="addBtn"> Add </button>
+    </div>
+    <p class="count"> Items - 0 </p>
+    <div class="container" >
+        <!-- <div class="square"></div>
+        <div class="circle"></div> -->
+    </div>
+</body>
+<script src="./script.js"></script>
+</html>
