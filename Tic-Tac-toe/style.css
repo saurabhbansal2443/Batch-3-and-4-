@@ -25,12 +25,11 @@ body {
 .cell {
     border-bottom: 5px solid black;
     border-right: 5px solid black;
-    font-size: 70px;
+    font-size: 50px;
     text-align: center;
     line-height: 95px;
     cursor: pointer;
     user-select: none;
-    padding: 20px;
     font-weight: 900;
     display: flex;
     justify-content: center;

@@ -9,19 +9,28 @@ let gamePlay = false;
 let turn = "X";
 let count = 0;
 
+let victoryAudio = new Audio("./vicAud.mp3");
+let clickAudio = new Audio("./click12.aac");
+let wrongAudio = new Audio("./wrongclick.wav");
+let tieAudio = new Audio("./tie.mp3");
+let gameStart = new Audio("./gamestart.mp3");
+
+
 startBtn.addEventListener("click", function () {
 
     if (gamePlay == false) {
         gameStm.innerHTML = "Player X's turn "
         startBtn.innerHTML = "Reset";
+       gameStart.play();
         count = 0;
         turn = "X";
     } else {
         gameStm.innerHTML = "";
         startBtn.innerHTML = "Start"
     }
-
+    clearGrid();
     gamePlay = !gamePlay;
+    //clearGrid();
 })
 
 // for(let i = 0 ;i<allCells.length;i++){
@@ -36,7 +45,7 @@ gameBoard.addEventListener("click", function (event) {
 
         let myCell = event.target;
         count++;
-
+        clickAudio.play();
         if (turn == "X") {
             myCell.innerHTML = turn;
             myCell.style.color = "black";
@@ -52,19 +61,19 @@ gameBoard.addEventListener("click", function (event) {
         let output = checkWinner();
         if (output == 2) {
             gameStm.innerHTML = "Player X wins the Game";
-            
+            victoryAudio.play();
             restartGame()
         } else if (output == 1) {
             gameStm.innerHTML = "Player 0 wins the Game";
-            
+            victoryAudio.play();
             restartGame()
         } else if (count == 9) {
             gameStm.innerHTML = "TIE";
-        
+          tieAudio.play();
             restartGame()
         }
     } else {
-
+        wrongAudio.play();
     }
 })
 
@@ -142,7 +151,7 @@ function restartGame() {
     startBtn.innerHTML = "Game is Starting ... ";
     startBtn.disabled = true;
     gameBoard.classList.add("disabled");
-    
+
     setTimeout(function () {
         clearGrid();
         startBtn.disabled = false;
