@@ -7,13 +7,14 @@ let allCells = document.querySelectorAll(".cell");
 
 let gamePlay = false;
 let turn = "X";
-let count = 0 ;
+let count = 0;
 
 startBtn.addEventListener("click", function () {
 
     if (gamePlay == false) {
         gameStm.innerHTML = "Player X's turn "
         startBtn.innerHTML = "Reset";
+        count = 0;
         turn = "X";
     } else {
         gameStm.innerHTML = "";
@@ -38,7 +39,7 @@ gameBoard.addEventListener("click", function (event) {
 
         if (turn == "X") {
             myCell.innerHTML = turn;
-
+            myCell.style.color = "black";
             turn = "0";
 
         } else {
@@ -48,17 +49,20 @@ gameBoard.addEventListener("click", function (event) {
         }
         gameStm.innerHTML = `Player ${turn}'s turn `
 
-          let output = checkWinner();
-          if(output == 2){
+        let output = checkWinner();
+        if (output == 2) {
             gameStm.innerHTML = "Player X wins the Game";
-            clearGrid();
-          }else if ( output == 1){
+            
+            restartGame()
+        } else if (output == 1) {
             gameStm.innerHTML = "Player 0 wins the Game";
-            clearGrid();
-          }else if ( count == 9 ){
+            
+            restartGame()
+        } else if (count == 9) {
             gameStm.innerHTML = "TIE";
-            clearGrid();
-          }
+        
+            restartGame()
+        }
     } else {
 
     }
@@ -128,8 +132,21 @@ function checkWinner() {
 }
 
 
-function clearGrid(){
-    for(let i = 0 ; i<allCells.length ; i++){
+function clearGrid() {
+    for (let i = 0; i < allCells.length; i++) {
         allCells[i].innerHTML = "";
     }
+}
+
+function restartGame() {
+    startBtn.innerHTML = "Game is Starting ... ";
+    startBtn.disabled = true;
+    gameBoard.classList.add("disabled");
+    
+    setTimeout(function () {
+        clearGrid();
+        startBtn.disabled = false;
+        gameBoard.classList.remove("disabled");
+        startBtn.click();
+    }, 3000);
 }
